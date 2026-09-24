@@ -2,10 +2,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# from PredictiveModels.ElasticModuli import romBased as ROM
-# from PredictiveModels.ElasticModuli import chamisModel as chM
-# from PredictiveModels.baseModel_ANN import ANNmodel as ann
-
 from models.ElasticModuli import romBased as ROM
 from models.ElasticModuli import chamisModel as chM
 from models.baseModel_ANN import ANNmodel as ann
@@ -118,7 +114,6 @@ if __name__ == '__main__':
     ann_df = ann(Em,num,E1f,nu12f,Vf)
     lisMod.append(ann_df)
     modelNames.append(modName)
-    input(11)
     
     PropNames = ['E1', 'E2', 'v12', 'G12', 'G23',]
     PropNamesM = ['E1', 'E2', 'nu12', 'G12', 'G23',]
