@@ -7,6 +7,7 @@ This repository contains the implementation of the surrogate model for predictin
 
 # 📊 Figure Preview
 ![Elastic Property Prediction](figs/figure_preview.png)
+> [Descargar/Ver figura completa en PDF](figs/CompProps_MRE_24m9_11m11s33.pdf)
 
 ## 📄 Article
 * **Title:** Machine Learning-Based Elastic Property Prediction for High-Fiber-Content Unidirectional Composites
