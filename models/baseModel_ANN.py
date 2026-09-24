@@ -7,7 +7,7 @@ import pickle
 import numpy as np
 # from models.ffnn import MLP
 # from ffnn import MLP
-from PredictiveModels.models.ffnn import MLP
+from src.ffnn import MLP
 # from models.ffnn import MLP
 import torch.nn as nn
 import pandas as pd
@@ -56,7 +56,8 @@ def preprocess_data(data, feature_scaler):
 
 # Function to make predictions and inverse scale if needed
 def make_predictions(model, input_data, target_scaler=None):
-    input_data = torch.tensor(input_data, dtype=torch.float64)
+    # input_data = torch.tensor(input_data, dtype=torch.float64)
+    input_data = torch.tensor(input_data)
     with torch.no_grad():  # No gradient computation for inference
         predictions = model(input_data)
         if target_scaler:
