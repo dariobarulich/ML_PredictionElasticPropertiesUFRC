@@ -13,7 +13,5 @@ This repository contains the implementation of the surrogate model for predictin
 ## 🚀 Quick/fast use
 ```bash
 pip install -r requirements.txt
-cd src
-python train.py
-python evaluate.py
+python -m Compare_MLAndAnalytical_againstFEM
 
