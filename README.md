@@ -17,5 +17,6 @@ This repository contains the implementation of the surrogate model for predictin
 ## 🚀 Quick/fast use
 ```bash
 pip install -r requirements.txt
+cd ML_PredictionElasticPropertiesUFRC
 python -m Compare_MLAndAnalytical_againstFEM
 
