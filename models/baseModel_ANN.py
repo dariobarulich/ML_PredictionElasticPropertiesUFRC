@@ -99,8 +99,10 @@ def ANNmodel(
 
     print('ANN')
 
-    pathTofiles = 'N:/2024/AI_composites/Codes/PaperVersion/PredictiveModels/baselineModel/'
-    feature_scaler_path = pathTofiles+'featScaler.pkl'  
+    # pathTofiles = 'N:/2024/AI_composites/Codes/PaperVersion/PredictiveModels/baselineModel/'
+    # pathTofiles = '/home/fdcarazo/my_github/compElasProp/'
+    pathTofiles = './models/'
+    feature_scaler_path = pathTofiles+'featScaler.pkl'
     target_scaler_path = pathTofiles+'targScaler.pkl'   
     model_path = pathTofiles+'dlModelWithoutHyperOpt_sd.pt'
 
@@ -154,8 +156,6 @@ def ANNmodel(
 
 
     return df
-
-
 
 if __name__ == "__main__":
     

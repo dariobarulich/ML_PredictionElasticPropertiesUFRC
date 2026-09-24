@@ -2,37 +2,19 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from PredictiveModels.ElasticModuli import romBased as ROM
-from PredictiveModels.ElasticModuli import chamisModel as chM
-from PredictiveModels.baseModel_ANN import ANNmodel as ann
+# from PredictiveModels.ElasticModuli import romBased as ROM
+# from PredictiveModels.ElasticModuli import chamisModel as chM
+# from PredictiveModels.baseModel_ANN import ANNmodel as ann
+
+from models.ElasticModuli import romBased as ROM
+from models.ElasticModuli import chamisModel as chM
+from models.baseModel_ANN import ANNmodel as ann
 
 from datetime import *
 
+MARKERList = ['h','^','v','s','d','.','<','o','<',]
 
-MARKERList = [
-    'h',
-    '^',
-    'v',
-    's',
-    'd',
-    '.',
-    '<',
-    'o',
-    '<',
-]
-
-listOfColors = [
-    'b',
-    'g',
-    'r',
-    'y',
-    'm',
-    'k',
-    'c',
-    'm',
-    'b',
-
-]
+listOfColors = ['b','g','r','y','m','k','c','m','b',]
 
 def getTime():
     d=datetime.today()
@@ -45,16 +27,12 @@ def getTime():
     fechaN = str(dia)+'m'+str(mes)+'_'+str(hora)+'m'+str(minutos)+'s'+str(segundos)
     return fechaN
 
-
-
 def getabsolErr(y_target, y):
     absolErr = np.average(np.abs(y_target-y)/y_target*100.0)
-
     return absolErr
 
 def getMRE(y_target, y):
     MRE = np.average((y_target-y)/y_target*100.0)
-
     return MRE
 
 def getRMSE(y_target, y):
@@ -77,7 +55,6 @@ def getCumHist(y_target, y, ax, modName,color_i,marker_i,errorName):
     print(f'  {modName}  {errorName}= {RMSE:8.4e}')
 
     stats = (rf'({RMSE:8.4e})')
-
     
     legName = modName+stats
     fig2, ax2 = plt.subplots(figsize=(12, 5))
@@ -90,21 +67,19 @@ def getCumHist(y_target, y, ax, modName,color_i,marker_i,errorName):
     step = n_points // (n_markers)  # Calculate step size for equal spacing
     marker_indices = np.arange(0, n_points, step)[:n_markers]  # Select indices at intervals
 
-    
     bisL = bins[:-1]+ 0.5*(bins[1:] - bins[:-1])
-    ax.plot(bisL, n, markerfacecolor= 'white', color= color_i, marker= marker_i, label=legName, markevery = int(n_points/25)) # color_i,marker_i
-
+    ax.plot(bisL, n, markerfacecolor= 'white', color= color_i, marker= marker_i,
+            label=legName, markevery = int(n_points/25)) # color_i,marker_i
 
 
 if __name__ == '__main__':
 
     # Load data from CSV
     print('Opening DataBase')
-    data = pd.read_csv('database_short.csv')  # Assume CSV has columns x1, x2, y
-
+    data = pd.read_csv('./data/database_short.csv')  # Assume CSV has columns x1, x2, y
+    
     # Extracting features and target
     EM, nuM, EF, nuF, Vf = data['EM'].values, data['nuM'].values, data['EF'].values, data['nuF'].values, data['Vf'].values
-
 
     #=====================================================
     # EM,nuM,EF,nuF,Vf
@@ -117,12 +92,10 @@ if __name__ == '__main__':
     num = np.array(data['nuM'])
     Vf = np.array(data['Vf'])
 
-
     numModel = 0
     lisMod = []
     modelNames = []
 
-    
     modName = 'Ch    '
     numModel = numModel +1
     chm_df = chM(E1f,E2f,G12f,nu12f,nu23f,Em,num,Vf)
@@ -130,12 +103,8 @@ if __name__ == '__main__':
     modelNames.append(modName)
     print(modName)
     # getCumHist(y_target, chm_df[propName], ax, modName)
-
-
-
-
-    modName = 'ROM   '
     
+    modName = 'ROM   '    
     numModel = numModel +1
     rom_df = ROM(E1f,E2f,G12f,nu12f,nu23f,Em,num,Vf)
     lisMod.append(rom_df)
@@ -143,16 +112,14 @@ if __name__ == '__main__':
     print(modName)
     # getCumHist(y_target, rom_df[propName], ax, modName)
     
-
     modName = 'BaseL '
     numModel = numModel +1
     print(modName)
     ann_df = ann(Em,num,E1f,nu12f,Vf)
     lisMod.append(ann_df)
     modelNames.append(modName)
-
+    input(11)
     
-
     PropNames = ['E1', 'E2', 'v12', 'G12', 'G23',]
     PropNamesM = ['E1', 'E2', 'nu12', 'G12', 'G23',]
     labPropNamesM = ['E_{11', 'E_{22', '\\nu_{12', 'G_{12', 'G_{23',]
@@ -160,13 +127,7 @@ if __name__ == '__main__':
     
     errorName = 'MRE'
     
-    mapNames = [
-        'E1',
-        'E2',
-        'nu12',
-        'G12',
-        'G23',
-    ]
+    mapNames = ['E1','E2','nu12','G12','G23',]
 
     plt.rcParams.update({
                         "text.usetex": True,
@@ -233,6 +194,6 @@ if __name__ == '__main__':
         legend.get_frame().set_facecolor('white')
         
 
-    fig.savefig('CompProps_'+'MRE'+'_'+getTime()+'.pdf') 
+    fig.savefig('./figs/'+'CompProps_'+'MRE'+'_'+getTime()+'.pdf') 
 
-plt.show() 
+plt.show()
