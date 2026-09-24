@@ -10,10 +10,6 @@ ENV/
 .venv
 
 # Data & Models
-data/*.csv
-data/*.npy
-models/*.pt
-models/*.pkl
 
 # IDE / Editor
 .vscode/
