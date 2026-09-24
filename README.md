@@ -6,7 +6,7 @@
 This repository contains the implementation of the surrogate model for predicting the **8 effective elastic properties** of UFRC.
 
 # 📊 Figure Preview
-![Elastic Property Prediction](figs/figura_preview.png)
+![Elastic Property Prediction](figs/figure_preview.png)
 
 ## 📄 Article
 * **Title:** Machine Learning-Based Elastic Property Prediction for High-Fiber-Content Unidirectional Composites
